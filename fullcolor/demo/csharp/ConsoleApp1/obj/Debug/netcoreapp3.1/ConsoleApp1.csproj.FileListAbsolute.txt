@@ -1,0 +1,13 @@
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.csprojAssemblyReference.cache
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.AssemblyInfoInputs.cache
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.AssemblyInfo.cs
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.csproj.CoreCompileInputs.cache
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\bin\Debug\netcoreapp3.1\ConsoleApp1.exe
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\bin\Debug\netcoreapp3.1\ConsoleApp1.deps.json
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\bin\Debug\netcoreapp3.1\ConsoleApp1.runtimeconfig.json
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\bin\Debug\netcoreapp3.1\ConsoleApp1.runtimeconfig.dev.json
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\bin\Debug\netcoreapp3.1\ConsoleApp1.dll
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\bin\Debug\netcoreapp3.1\ConsoleApp1.pdb
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.dll
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.pdb
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\ConsoleApp1\obj\Debug\netcoreapp3.1\ConsoleApp1.genruntimeconfig.cache
