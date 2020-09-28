@@ -13,7 +13,7 @@ namespace RemoteServer.Properties
 
 
     /// <summary>
-    ///   强类型资源类，用于查找本地化字符串等。
+    ///   强Types of资源类，用于查找本地化字符串等。
     /// </summary>
     // 此类是由 StronglyTypedResourceBuilder
     // 类通过类似于 ResGen 或 Visual Studio 的工具自动生成的。
@@ -53,7 +53,7 @@ namespace RemoteServer.Properties
 
         /// <summary>
         ///   覆盖当前线程的 CurrentUICulture 属性
-        ///   使用此强类型的资源类的资源查找。
+        ///   使用此强Types of的资源类的资源查找。
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
         internal static global::System.Globalization.CultureInfo Culture

@@ -7,14 +7,14 @@ namespace huidu.sdk
 {
     class AdjustTime
     {
-        //回读时间校正
+        //Readback time correction
         public static string GetTimeInfo()
         {
             string cmd = "    <in method=\"GetTimeInfo\"/>";
             return cmd;
         }
 
-        //设置时间校正
+        //Set time correction
         public static string SetTimeInfo()
         {
             string cmd =

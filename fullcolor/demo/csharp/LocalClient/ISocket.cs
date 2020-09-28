@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace huidu.sdk
 {
@@ -13,15 +10,14 @@ namespace huidu.sdk
         public abstract void RecvSignaled(object obj);
         public abstract Socket GetSocket();
 
-        public ISocket()
-        {
-            SocketHelper.GetInstance().recvHandle_ += 
-                new SocketHelper.RecvSignalHandle(RecvSignaled);
-        }
-
         protected byte[] recvBuffer_ = null;
         protected byte[] sendBuffer_ = null;
         protected static uint PROTOCOL_VERSION_1 = 0x1000005;
+
+        public ISocket()
+        {
+            SocketHelper.GetInstance().recvHandle_ += new SocketHelper.RecvSignalHandle(RecvSignaled);
+        }
 
         public static byte[] StructToBytes(object structObj, int size)
         {
@@ -40,7 +36,6 @@ namespace huidu.sdk
             {
                 return null;
             }
-
             IntPtr structPtr = Marshal.AllocHGlobal(size);
             Marshal.Copy(bytes, index, structPtr, size);
             object obj = Marshal.PtrToStructure(structPtr, type);
@@ -100,7 +95,7 @@ namespace huidu.sdk
 
         public static void SetString(byte[] data, ref int index, string value, int len = 0)
         {
-            byte[] byteArray = System.Text.Encoding.UTF8.GetBytes(value);
+            byte[] byteArray = Encoding.UTF8.GetBytes(value);
             Buffer.BlockCopy(byteArray, 0, data, index, byteArray.Length);
             if (len == 0)
             {

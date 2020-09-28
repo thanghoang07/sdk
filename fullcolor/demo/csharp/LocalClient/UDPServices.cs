@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace huidu.sdk
@@ -21,10 +17,33 @@ namespace huidu.sdk
         public string dns;
     }
 
-    public class UDPServices: ISocket
+    public enum HCmdType
+    {
+        kSearchDeviceAsk = 0x1001,
+        kSearchDeviceAnswer = 0x1002,
+        kSDKCmdAsk = 0x2003,
+        kSDKCmdAnswer = 0x2004,
+    }
+
+    public class UDPServices : ISocket
     {
         private static UDPServices instance_ = null;
-        static public UDPServices GetInstance()
+        private ArrayList devices_ = new ArrayList();
+        EndPoint remote_ = new IPEndPoint(IPAddress.Any, 0);
+        private static int MAX_UDP_PACKET = 9 * 1024;     //The largest packet of UDP protocol
+        private static int REMOTE_PORT = 10001;        //Port number of the UDP service monitored by the control card
+        private static int BIND_PORT = 0;            //No requirement for locally bound port number
+        private static int SEARCH_DELAY = 2000;         //The interval between sending a search packet
+        public static int MAX_DEVICE_ID_LENGHT = 15;
+        private static int MIN_RESPOND_UDP_LENGHT = 6;
+        private Socket udp_;
+        private IPEndPoint udpRemote_;
+        private byte[] searchAsk_;
+        private Timer searchTimer_;
+        public delegate void XmlRespondHandle(byte[] buffer, int len);
+        public XmlRespondHandle xmlRespond_;
+
+        public static UDPServices GetInstance()
         {
             if (instance_ == null)
             {
@@ -34,11 +53,10 @@ namespace huidu.sdk
             return instance_;
         }
 
-        private ArrayList devices_ = new ArrayList();
         public HDeviceInfo[] GetDevices()
         {
             HDeviceInfo[] devices = new HDeviceInfo[this.devices_.Count];
-            for (int i=0; i<this.devices_.Count; i++)
+            for (int i = 0; i < this.devices_.Count; i++)
             {
                 devices[i] = (HDeviceInfo)this.devices_[i];
             }
@@ -46,7 +64,6 @@ namespace huidu.sdk
             return devices;
         }
 
-        EndPoint remote_ = new IPEndPoint(IPAddress.Any, 0);
         public override void RecvSignaled(object obj)
         {
             if (obj != this.udp_)
@@ -75,20 +92,14 @@ namespace huidu.sdk
             this.udp_.SendTo(packet, this.udpRemote_);
         }
 
-        private static int MAX_UDP_PACKET           = 9 * 1024;     //UDP协议最大的一个数据包
-        private static int REMOTE_PORT              = 10001;        //控制卡监听的UDP服务的端口号
-        private static int BIND_PORT                = 0;            //对本地绑定的端口号没有要求
-        private static int SEARCH_DELAY             = 2000;         //发送一个搜索包的间隔时间
-        public  static int MAX_DEVICE_ID_LENGHT     = 15;
-        private static int MIN_RESPOND_UDP_LENGHT   = 6;
         private UDPServices()
         {
             /**
-             * 1. 初始化接收和发送数据的buffer
-             * 2. 初始化发送广播包的socket
-             * 3. 初始化搜索控制卡的数据包buffer
-             * 4. 启动定时器, 定时发送搜索包
-             */
+              * 1. Initialize the buffer for receiving and sending data
+              * 2. Initialize the socket for sending broadcast packets
+              * 3. Initialize the data packet buffer of the search control card
+              * 4. Start the timer and send search packets regularly
+              */
             this.recvBuffer_ = new byte[MAX_UDP_PACKET];
             this.sendBuffer_ = new byte[MAX_UDP_PACKET];
             this.InitSocket();
@@ -96,30 +107,21 @@ namespace huidu.sdk
             this.StartSearchDevice();
         }
 
-        private Socket udp_;
-        private IPEndPoint udpRemote_;
         private void InitSocket()
         {
             this.udpRemote_ = new IPEndPoint(IPAddress.Broadcast, REMOTE_PORT);
-            IPEndPoint ip   = new IPEndPoint(IPAddress.Any, BIND_PORT);
-            this.udp_       = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            IPEndPoint ip = new IPEndPoint(IPAddress.Any, BIND_PORT);
+            this.udp_ = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             this.udp_.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.Broadcast, 1);
             try
             {
                 this.udp_.Bind(ip);
                 SocketHelper.GetInstance().Register(this);
-            } catch (SocketException e)
-            {
-
             }
-        }
-
-        public enum HCmdType
-        {
-            kSearchDeviceAsk        = 0x1001,
-            kSearchDeviceAnswer     = 0x1002,
-            kSDKCmdAsk              = 0x2003,
-            kSDKCmdAnswer           = 0x2004,
+            catch (SocketException e)
+            {
+                Console.WriteLine($"InitSocket error {e.Message}");
+            }
         }
 
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
@@ -132,23 +134,21 @@ namespace huidu.sdk
         [StructLayout(LayoutKind.Sequential, Pack = 1)]
         private struct HSearchAnswer
         {
-            public uint     version;
-            public ushort   cmd;
+            public uint version;
+            public ushort cmd;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 15)]
-            public byte[]   id;
-            public uint     change;
+            public byte[] id;
+            public uint change;
         }
 
-        private byte[] searchAsk_;
         private void InitSearchPacket()
         {
-            HSearchAsk ask  = new HSearchAsk();
-            ask.version     = PROTOCOL_VERSION_1;
-            ask.cmd         = (ushort)HCmdType.kSearchDeviceAsk;
+            HSearchAsk ask = new HSearchAsk();
+            ask.version = PROTOCOL_VERSION_1;
+            ask.cmd = (ushort)HCmdType.kSearchDeviceAsk;
             this.searchAsk_ = StructToBytes(ask, 6);
         }
 
-        private Timer searchTimer_;
         private void StartSearchDevice()
         {
             this.searchTimer_ = new Timer();
@@ -193,12 +193,10 @@ namespace huidu.sdk
             {
                 checkLen = Marshal.SizeOf(answer);
             }
-
             if (packetLen != checkLen)
             {
-                return ;
+                return;
             }
-
             int index = 0;
             string id = ISocket.GetString(answer.id, ref index, MAX_DEVICE_ID_LENGHT);
             if (this.FindDeviceID(id) == false)
@@ -207,8 +205,6 @@ namespace huidu.sdk
             }
         }
 
-        public delegate void XmlRespondHandle(byte[] buffer, int len);
-        public XmlRespondHandle xmlRespond_;
         private void RecvSDKCmdAnswer(int packetLen)
         {
             if (this.xmlRespond_ != null)
@@ -216,7 +212,6 @@ namespace huidu.sdk
                 this.xmlRespond_(this.recvBuffer_, packetLen);
             }
         }
-
 
         private bool FindDeviceID(string id)
         {
@@ -228,7 +223,6 @@ namespace huidu.sdk
                     return true;
                 }
             }
-
             return false;
         }
 
@@ -251,7 +245,6 @@ namespace huidu.sdk
                     return info;
                 }
             }
-
             return new HDeviceInfo();
         }
     }

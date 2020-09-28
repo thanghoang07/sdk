@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+﻿using huidu.sdk;
+using System;
 using System.Windows.Forms;
-using huidu.sdk;
 using System.Xml;
 
 namespace LocalClient
@@ -16,36 +10,32 @@ namespace LocalClient
         public AddressSet()
         {
             InitializeComponent();
-
-            //初始化socket监听器, 开启线程进行socket监听
+            //Initialize the socket listener, start the thread for socket monitoring
             SocketHelper.GetInstance().Init();
-
-            //创建udp服务: 支持搜索控制卡、设置控制卡IP地址
+            //Create udp service: support search control card, set control card IP address
             UDPServices.GetInstance();
-
             UDPServices.GetInstance().xmlRespond_ += this.XmlRespond;
         }
 
-        //窗口关闭事件函数
+        //Window close event function
         private void AddressSet_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //窗体退出时等待后台线程退出后再关闭窗口
+            //When the form exits, wait for the background thread to exit before closing the window
             SocketHelper.GetInstance().Exit();
         }
 
-        //控制卡ID号刷新事件函数
+        //Control card ID number refresh event function
         private void btnRefresh_Click(object sender, EventArgs e)
         {
-            //1. 清空列表中的项
-            //2. 获取控制卡列表, 将控制卡ID添加到列表中
+            //1. Clear items in the list
+            //2. Get the control card list and add the control card ID to the list
             this.cbbDeviceID.Items.Clear();
             HDeviceInfo[] devices = UDPServices.GetInstance().GetDevices();
-            for (int i = 0; i<devices.Length; i++)
+            for (int i = 0; i < devices.Length; i++)
             {
                 this.cbbDeviceID.Items.Add(devices[i].id);
             }
-
-            //3. 选中第0个项
+            //3. Select the 0th item
             if (this.cbbDeviceID.Items.Count > 0)
             {
                 this.cbbDeviceID.Text = (string)this.cbbDeviceID.Items[0];
@@ -56,7 +46,7 @@ namespace LocalClient
         {
             if (this.cbbDeviceID.Text == "")
             {
-                return ;
+                return;
             }
 
             string cmd =
@@ -75,13 +65,13 @@ namespace LocalClient
             }
 
             HnEthernetInfo nInfo = new HnEthernetInfo();
-            nInfo.valid     = true;
-            nInfo.enable    = true;
-            nInfo.dhcp      = this.cbDhcpEnable.Checked;
-            nInfo.ip        = this.tbIP.Text;
-            nInfo.mask      = this.tbMask.Text;
-            nInfo.gateway   = this.tbGateway.Text;
-            nInfo.dns       = this.tbDNS.Text;
+            nInfo.valid = true;
+            nInfo.enable = true;
+            nInfo.dhcp = this.cbDhcpEnable.Checked;
+            nInfo.ip = this.tbIP.Text;
+            nInfo.mask = this.tbMask.Text;
+            nInfo.gateway = this.tbGateway.Text;
+            nInfo.dns = this.tbDNS.Text;
             HEthernetInfo info = this.N2Str(nInfo);
             string cmd =
                 "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n"
@@ -146,12 +136,12 @@ namespace LocalClient
                 byte[] copy = new byte[len];
                 Array.Copy(buffer, copy, len);
                 this.Invoke(UDPServices.GetInstance().xmlRespond_, new object[] { copy, len });
-                return ;
+                return;
             }
 
             int index = 0;
             int version = ISocket.GetInt(buffer, ref index);
-            UDPServices.HCmdType cmd = (UDPServices.HCmdType)ISocket.GetShort(buffer, ref index);
+            HCmdType cmd = (HCmdType)ISocket.GetShort(buffer, ref index);
             string id = ISocket.GetString(buffer, ref index, UDPServices.MAX_DEVICE_ID_LENGHT);
             if (id.IndexOf('\0') >= 0)
             {
@@ -160,7 +150,7 @@ namespace LocalClient
 
             if (id != this.cbbDeviceID.Text)
             {
-                return ;
+                return;
             }
 
             string xml = ISocket.GetString(buffer, ref index, len - 6 - UDPServices.MAX_DEVICE_ID_LENGHT);
@@ -179,29 +169,32 @@ namespace LocalClient
                 {
                     if (node.Attributes["result"].InnerText != "kSuccess")
                     {
-                        Console.Write("获取失败");
-                        continue ;
+                        Console.Write("获取 failure");
+                        continue;
                     }
 
                     if (node.Attributes["method"].InnerText == "GetEth0Info")
                     {
                         this.ParseGetEth0Info(node);
-                    } else if (node.Attributes["method"].InnerText == "SetEth0Info")
+                    }
+                    else if (node.Attributes["method"].InnerText == "SetEth0Info")
                     {
                         this.ParseSetEth0Info(node);
-                    } else if (node.Attributes["method"].InnerText == "GetSDKTcpServer")
+                    }
+                    else if (node.Attributes["method"].InnerText == "GetSDKTcpServer")
                     {
                         this.ParseGetSDKTcpServer(node);
-                    } else if (node.Attributes["method"].InnerText == "SetSDKTcpServer")
+                    }
+                    else if (node.Attributes["method"].InnerText == "SetSDKTcpServer")
                     {
                         this.ParseSetSDKTcpServer(node);
                     }
                 }
 
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
-                
+                Console.WriteLine($"ParseXml error: {e.Message}");
             }
         }
 
@@ -230,70 +223,71 @@ namespace LocalClient
         private HnEthernetInfo Str2N(HEthernetInfo info)
         {
             HnEthernetInfo nInfo = new HnEthernetInfo();
-            nInfo.valid     = this.ParseBool(info.valid);
-            nInfo.enable    = this.ParseBool(info.enable);
-            nInfo.dhcp      = this.ParseBool(info.dhcp);
-            nInfo.ip        = info.ip;
-            nInfo.mask      = info.mask;
-            nInfo.gateway   = info.gateway;
-            nInfo.dns       = info.dns;
+            nInfo.valid = this.ParseBool(info.valid);
+            nInfo.enable = this.ParseBool(info.enable);
+            nInfo.dhcp = this.ParseBool(info.dhcp);
+            nInfo.ip = info.ip;
+            nInfo.mask = info.mask;
+            nInfo.gateway = info.gateway;
+            nInfo.dns = info.dns;
             return nInfo;
         }
 
         private HEthernetInfo N2Str(HnEthernetInfo nInfo)
         {
             HEthernetInfo info = new HEthernetInfo();
-            info.valid      = this.GenBool(nInfo.valid);
-            info.enable     = this.GenBool(nInfo.enable);
-            info.dhcp       = this.GenBool(nInfo.dhcp);
-            info.ip         = nInfo.ip;
-            info.mask       = nInfo.mask;
-            info.gateway    = nInfo.gateway;
-            info.dns        = nInfo.dns;
+            info.valid = this.GenBool(nInfo.valid);
+            info.enable = this.GenBool(nInfo.enable);
+            info.dhcp = this.GenBool(nInfo.dhcp);
+            info.ip = nInfo.ip;
+            info.mask = nInfo.mask;
+            info.gateway = nInfo.gateway;
+            info.dns = nInfo.dns;
             return info;
         }
 
         private void ParseGetEth0Info(XmlNode outNode)
         {
-            HEthernetInfo info      = new HEthernetInfo();
+            HEthernetInfo info = new HEthernetInfo();
             try
             {
-                XmlNode eth     = outNode.SelectSingleNode("eth");
-                XmlNode enable  = outNode.SelectNodes("eth/enable")[0];
-                XmlNode dhcp    = outNode.SelectNodes("eth/dhcp")[0];
-                XmlNode addr    = outNode.SelectNodes("eth/address")[0];
+                XmlNode eth = outNode.SelectSingleNode("eth");
+                XmlNode enable = outNode.SelectNodes("eth/enable")[0];
+                XmlNode dhcp = outNode.SelectNodes("eth/dhcp")[0];
+                XmlNode addr = outNode.SelectNodes("eth/address")[0];
 
-                info.valid      = eth.Attributes["valid"].InnerText;
-                info.enable     = enable.Attributes["value"].InnerText;
-                info.dhcp       = dhcp.Attributes["auto"].InnerText;
-                info.ip         = addr.Attributes["ip"].InnerText;
-                info.mask       = addr.Attributes["netmask"].InnerText;
-                info.gateway    = addr.Attributes["gateway"].InnerText;
-                info.dns        = addr.Attributes["dns"].InnerText;
+                info.valid = eth.Attributes["valid"].InnerText;
+                info.enable = enable.Attributes["value"].InnerText;
+                info.dhcp = dhcp.Attributes["auto"].InnerText;
+                info.ip = addr.Attributes["ip"].InnerText;
+                info.mask = addr.Attributes["netmask"].InnerText;
+                info.gateway = addr.Attributes["gateway"].InnerText;
+                info.dns = addr.Attributes["dns"].InnerText;
                 this.RefreshEthUI(this.Str2N(info));
-            } catch (System.Exception e)
+            }
+            catch (Exception e)
             {
-
+                Console.WriteLine($"ParseGetEth0Info error: {e.Message}");
             }
         }
 
         private void ParseSetEth0Info(XmlNode outNode)
         {
-            //走进该流程 说明设置成功
+            //Walk into the process description to set success
         }
 
         private void ParseGetSDKTcpServer(XmlNode outNode)
         {
-            XmlNode server      = outNode.SelectSingleNode("server");
-            string host         = server.Attributes["host"].InnerText;
-            string port         = server.Attributes["port"].InnerText;
-            this.tbHost.Text    = host;
-            this.tbPort.Text    = port;
+            XmlNode server = outNode.SelectSingleNode("server");
+            string host = server.Attributes["host"].InnerText;
+            string port = server.Attributes["port"].InnerText;
+            this.tbHost.Text = host;
+            this.tbPort.Text = port;
         }
 
         private void ParseSetSDKTcpServer(XmlNode outNode)
         {
-            //走进该流程 说明设置成功
+            //Walk into the process description to set success
         }
 
         private bool ParseBool(string value)

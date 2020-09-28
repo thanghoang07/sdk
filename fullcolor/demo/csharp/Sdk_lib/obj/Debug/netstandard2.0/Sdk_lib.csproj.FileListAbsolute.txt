@@ -1,0 +1,4 @@
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\Sdk_lib\obj\Debug\netstandard2.0\Sdk_lib.csprojAssemblyReference.cache
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\Sdk_lib\obj\Debug\netstandard2.0\Sdk_lib.AssemblyInfoInputs.cache
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\Sdk_lib\obj\Debug\netstandard2.0\Sdk_lib.AssemblyInfo.cs
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\Sdk_lib\obj\Debug\netstandard2.0\Sdk_lib.csproj.CoreCompileInputs.cache

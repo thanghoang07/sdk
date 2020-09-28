@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
-using System.Threading;
 
 namespace huidu.sdk
 {
     public delegate void ShowMessageHandle(string msg, bool error);
-    class TcpServer
+    public class TcpServer
     {
         private int port_;
         private Socket server_;
@@ -57,11 +53,11 @@ namespace huidu.sdk
                 server_.Bind(iep);
                 server_.Listen(20);
                 server_.BeginAccept(new AsyncCallback(Accept), server_);
-                this.ShowMessage("监听端口号: " + this.port_ + " 成功.");
+                this.ShowMessage("Listening port number: " + this.port_ + " success.");
             }
-            catch(System.Exception e)
+            catch (System.Exception e)
             {
-                this.ShowMessage("监听端口号: " + this.port_ + " 失败.");
+                this.ShowMessage("Listening port number: " + this.port_ + "  failure.");
             }
         }
 
@@ -74,14 +70,14 @@ namespace huidu.sdk
             }
 
             this.client_ = this.server_.EndAccept(iar);
-            this.ShowMessage("一个客户端接入.");
+            this.ShowMessage("One client access.");
             try
             {
                 server_.BeginAccept(new AsyncCallback(Accept), server_);
             }
             catch (System.Exception e)
             {
-                this.ShowMessage("监听端口号: " + this.port_ + " 失败.");
+                this.ShowMessage("Listening port number: " + this.port_ + "  failure.");
             }
             SDKClient.GetInstace().InitConnect(client_);
         }

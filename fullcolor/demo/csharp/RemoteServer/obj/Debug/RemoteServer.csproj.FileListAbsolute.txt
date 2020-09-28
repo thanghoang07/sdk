@@ -1,0 +1,9 @@
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\bin\Debug\RemoteServer.exe
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\bin\Debug\RemoteServer.pdb
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\obj\Debug\RemoteServer.csprojAssemblyReference.cache
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\obj\Debug\RemoteServer.Mainwindow.resources
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\obj\Debug\RemoteServer.Properties.Resources.resources
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\obj\Debug\RemoteServer.csproj.GenerateResource.cache
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\obj\Debug\RemoteServer.csproj.CoreCompileInputs.cache
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\obj\Debug\RemoteServer.exe
+D:\Documents_2\ledSdkDemo\fullcolor\demo\csharp\RemoteServer\obj\Debug\RemoteServer.pdb

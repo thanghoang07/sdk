@@ -7,14 +7,14 @@ namespace huidu.sdk
 {
     class Light
     {
-        //回读亮度策略
+        //Read back brightness strategy
         static public string GetLuminancePloy()
         {
             string cmd = "    <in method=\"GetLuminancePloy\"/>\n";
             return cmd;
         }
 
-        //设置亮度策略
+        //Set brightness strategy
         static public string SetLuminancePloy()
         {
             string cmd = ""
