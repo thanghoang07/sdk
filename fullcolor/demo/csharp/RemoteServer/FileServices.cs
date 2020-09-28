@@ -99,9 +99,9 @@ namespace huidu.sdk
             long existSize = Tools.GetLong(recvBuffer_, ref index);
             if (status != 0)
             {
-                //说明失败
+                //说明 failure
                 TcpServer.GetInstance().ShowMessage("下载文件 "
-                    + this.current_.path + " 失败: " + Tools.Hex2String(recvBuffer_, len));
+                    + this.current_.path + "  failure: " + Tools.Hex2String(recvBuffer_, len));
                 return false;
             }
 
@@ -171,12 +171,12 @@ namespace huidu.sdk
             short status = Tools.GetShort(recvBuffer_, ref index);
             if (status == 0)
             {
-                //表示发送成功
-                TcpServer.GetInstance().ShowMessage("发送一个文件: " + this.current_.path + " 完成.");
+                //表示sendsuccess
+                TcpServer.GetInstance().ShowMessage("send一个文件: " + this.current_.path + " 完成.");
             } else
             {
-                TcpServer.GetInstance().ShowMessage("发送一个文件: " + this.current_.path 
-                    + " 失败: error code " + status);
+                TcpServer.GetInstance().ShowMessage("send一个文件: " + this.current_.path 
+                    + "  failure: error code " + status);
             }
         }
 

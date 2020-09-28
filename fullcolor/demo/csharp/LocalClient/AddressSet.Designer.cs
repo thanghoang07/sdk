@@ -3,14 +3,14 @@
     partial class AddressSet
     {
         /// <summary>
-        /// 必需的设计器变量。
+        /// Required designer variables.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// 清理所有正在使用的资源。
+        /// Clean up all resources in use.
         /// </summary>
-        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        /// <param name="disposing">If the managed resource should be released, true; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,8 +23,8 @@
         #region Windows 窗体设计器生成的代码
 
         /// <summary>
-        /// 设计器支持所需的方法 - 不要修改
-        /// 使用代码编辑器修改此方法的内容。
+        /// The designer supports the required methods-do not modify
+        /// Use the code editor to modify the content of this method.
         /// </summary>
         private void InitializeComponent()
         {
@@ -105,7 +105,7 @@
             this.DeviceAddr.Padding = new System.Windows.Forms.Padding(3);
             this.DeviceAddr.Size = new System.Drawing.Size(396, 273);
             this.DeviceAddr.TabIndex = 0;
-            this.DeviceAddr.Text = "控制卡IP";
+            this.DeviceAddr.Text = "Control card IP";
             this.DeviceAddr.UseVisualStyleBackColor = true;
             // 
             // btnReget
@@ -114,7 +114,7 @@
             this.btnReget.Name = "btnReget";
             this.btnReget.Size = new System.Drawing.Size(75, 23);
             this.btnReget.TabIndex = 25;
-            this.btnReget.Text = "刷新";
+            this.btnReget.Text = "Refresh";
             this.btnReget.UseVisualStyleBackColor = true;
             this.btnReget.Click += new System.EventHandler(this.btnReget_Click);
             // 
@@ -133,7 +133,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 23;
-            this.btnOK.Text = "设置";
+            this.btnOK.Text = "Set up";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -167,7 +167,7 @@
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(53, 12);
             this.label11.TabIndex = 19;
-            this.label11.Text = "默认网关";
+            this.label11.Text = "Default gateway";
             // 
             // tbMask
             // 
@@ -183,7 +183,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(53, 12);
             this.label10.TabIndex = 17;
-            this.label10.Text = "子网掩码";
+            this.label10.Text = "Subnet mask";
             // 
             // tbIP
             // 
@@ -199,7 +199,7 @@
             this.cbDhcpEnable.Name = "cbDhcpEnable";
             this.cbDhcpEnable.Size = new System.Drawing.Size(48, 16);
             this.cbDhcpEnable.TabIndex = 15;
-            this.cbDhcpEnable.Text = "使能";
+            this.cbDhcpEnable.Text = "Enable";
             this.cbDhcpEnable.UseVisualStyleBackColor = true;
             // 
             // label9
@@ -209,7 +209,7 @@
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(41, 12);
             this.label9.TabIndex = 14;
-            this.label9.Text = "IP地址";
+            this.label9.Text = "IP address";
             // 
             // label8
             // 
@@ -218,7 +218,7 @@
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(53, 12);
             this.label8.TabIndex = 13;
-            this.label8.Text = "自动模式";
+            this.label8.Text = "Automatic mode";
             // 
             // ServerAddr
             // 
@@ -233,7 +233,7 @@
             this.ServerAddr.Padding = new System.Windows.Forms.Padding(3);
             this.ServerAddr.Size = new System.Drawing.Size(396, 273);
             this.ServerAddr.TabIndex = 1;
-            this.ServerAddr.Text = "服务器地址";
+            this.ServerAddr.Text = "server address";
             this.ServerAddr.UseVisualStyleBackColor = true;
             // 
             // btnRefresh
@@ -242,7 +242,7 @@
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "刷新";
+            this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -252,7 +252,7 @@
             this.btnSVRefresh.Name = "btnSVRefresh";
             this.btnSVRefresh.Size = new System.Drawing.Size(75, 23);
             this.btnSVRefresh.TabIndex = 27;
-            this.btnSVRefresh.Text = "刷新";
+            this.btnSVRefresh.Text = "Refresh";
             this.btnSVRefresh.UseVisualStyleBackColor = true;
             this.btnSVRefresh.Click += new System.EventHandler(this.btnSVRefresh_Click);
             // 
@@ -262,7 +262,7 @@
             this.btnSVOK.Name = "btnSVOK";
             this.btnSVOK.Size = new System.Drawing.Size(75, 23);
             this.btnSVOK.TabIndex = 26;
-            this.btnSVOK.Text = "设置";
+            this.btnSVOK.Text = "Set up";
             this.btnSVOK.UseVisualStyleBackColor = true;
             this.btnSVOK.Click += new System.EventHandler(this.btnSVOK_Click);
             // 
@@ -273,7 +273,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 12);
             this.label2.TabIndex = 28;
-            this.label2.Text = "主机地址:";
+            this.label2.Text = "Host address:";
             // 
             // label3
             // 
@@ -282,7 +282,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 12);
             this.label3.TabIndex = 29;
-            this.label3.Text = "端口号:";
+            this.label3.Text = "The port number:";
             // 
             // tbHost
             // 
@@ -308,7 +308,7 @@
             this.Controls.Add(this.cbbDeviceID);
             this.Controls.Add(this.label1);
             this.Name = "AddressSet";
-            this.Text = "地址设置";
+            this.Text = "Address Set up";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddressSet_FormClosed);
             this.tabControl1.ResumeLayout(false);
             this.DeviceAddr.ResumeLayout(false);

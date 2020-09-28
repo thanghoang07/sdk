@@ -3,14 +3,14 @@
     partial class Mainwindow
     {
         /// <summary>
-        /// 必需的设计器变量。
+        /// Required designer variables.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// 清理所有正在使用的资源。
+        /// Clean up all resources in use.
         /// </summary>
-        /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
+        /// <param name="disposing">If the managed resource should be released, true; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,8 +23,8 @@
         #region Windows 窗体设计器生成的代码
 
         /// <summary>
-        /// 设计器支持所需的方法 - 不要修改
-        /// 使用代码编辑器修改此方法的内容。
+        /// The designer supports the required methods-do not modify
+        /// Use the code editor to modify the content of this method.
         /// </summary>
         private void InitializeComponent()
         {
@@ -115,7 +115,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(782, 465);
             this.tabPage1.TabIndex = 2;
-            this.tabPage1.Text = "初始化";
+            this.tabPage1.Text = "initialization";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // btnStart
@@ -124,7 +124,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(77, 23);
             this.btnStart.TabIndex = 2;
-            this.btnStart.Text = "开始";
+            this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
@@ -143,7 +143,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(53, 12);
             this.label2.TabIndex = 0;
-            this.label2.Text = "端口号: ";
+            this.label2.Text = "The port number: ";
             // 
             // FileSync
             // 
@@ -154,7 +154,7 @@
             this.FileSync.Padding = new System.Windows.Forms.Padding(3);
             this.FileSync.Size = new System.Drawing.Size(782, 465);
             this.FileSync.TabIndex = 1;
-            this.FileSync.Text = "文件同步";
+            this.FileSync.Text = "File synchronization";
             this.FileSync.UseVisualStyleBackColor = true;
             // 
             // groupBox3
@@ -167,7 +167,7 @@
             this.groupBox3.Size = new System.Drawing.Size(737, 243);
             this.groupBox3.TabIndex = 5;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "文件列表";
+            this.groupBox3.Text = "document list";
             // 
             // RemoteList
             // 
@@ -188,20 +188,20 @@
             // 
             // columnHeader4
             // 
-            this.columnHeader4.Text = "文件名";
+            this.columnHeader4.Text = "file name";
             this.columnHeader4.Width = 93;
             // 
             // columnHeader5
             // 
-            this.columnHeader5.Text = "类型";
+            this.columnHeader5.Text = "Types of";
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "大小";
+            this.columnHeader6.Text = "size";
             // 
             // columnHeader8
             // 
-            this.columnHeader8.Text = "实际大小";
+            this.columnHeader8.Text = "Actual size";
             // 
             // columnHeader7
             // 
@@ -213,7 +213,7 @@
             this.RefreshFileList.Name = "RefreshFileList";
             this.RefreshFileList.Size = new System.Drawing.Size(87, 23);
             this.RefreshFileList.TabIndex = 2;
-            this.RefreshFileList.Text = "刷新";
+            this.RefreshFileList.Text = "Refresh";
             this.RefreshFileList.UseVisualStyleBackColor = true;
             this.RefreshFileList.Click += new System.EventHandler(this.RefreshFileList_Click);
             // 
@@ -223,7 +223,7 @@
             this.DeleteRomoteFile.Name = "DeleteRomoteFile";
             this.DeleteRomoteFile.Size = new System.Drawing.Size(86, 23);
             this.DeleteRomoteFile.TabIndex = 0;
-            this.DeleteRomoteFile.Text = "删除文件";
+            this.DeleteRomoteFile.Text = "Delete Files";
             this.DeleteRomoteFile.UseVisualStyleBackColor = true;
             this.DeleteRomoteFile.Click += new System.EventHandler(this.DeleteRomoteFile_Click);
             // 
@@ -238,7 +238,7 @@
             this.groupBox2.Size = new System.Drawing.Size(737, 191);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "上传文件列表";
+            this.groupBox2.Text = "Upload file list";
             // 
             // UploadList
             // 
@@ -259,7 +259,7 @@
             // 
             // columnHeader9
             // 
-            this.columnHeader9.Text = "文件名";
+            this.columnHeader9.Text = "file name";
             // 
             // columnHeader2
             // 
@@ -268,7 +268,7 @@
             // 
             // columnHeader10
             // 
-            this.columnHeader10.Text = "类型";
+            this.columnHeader10.Text = "Types of";
             // 
             // columnHeader3
             // 
@@ -277,7 +277,7 @@
             // 
             // columnHeader1
             // 
-            this.columnHeader1.Text = "路径";
+            this.columnHeader1.Text = "path";
             this.columnHeader1.Width = 259;
             // 
             // Upload
@@ -286,7 +286,7 @@
             this.Upload.Name = "Upload";
             this.Upload.Size = new System.Drawing.Size(86, 23);
             this.Upload.TabIndex = 2;
-            this.Upload.Text = "上传文件";
+            this.Upload.Text = "upload files";
             this.Upload.UseVisualStyleBackColor = true;
             this.Upload.Click += new System.EventHandler(this.Upload_Click);
             // 
@@ -296,7 +296,7 @@
             this.DeleteUpload.Name = "DeleteUpload";
             this.DeleteUpload.Size = new System.Drawing.Size(86, 23);
             this.DeleteUpload.TabIndex = 1;
-            this.DeleteUpload.Text = "删除文件";
+            this.DeleteUpload.Text = "Delete Files";
             this.DeleteUpload.UseVisualStyleBackColor = true;
             this.DeleteUpload.Click += new System.EventHandler(this.DeleteUpload_Click);
             // 
@@ -306,7 +306,7 @@
             this.AddToUpload.Name = "AddToUpload";
             this.AddToUpload.Size = new System.Drawing.Size(86, 23);
             this.AddToUpload.TabIndex = 0;
-            this.AddToUpload.Text = "添加文件";
+            this.AddToUpload.Text = "add files";
             this.AddToUpload.UseVisualStyleBackColor = true;
             this.AddToUpload.Click += new System.EventHandler(this.AddToUpload_Click);
             // 
@@ -322,7 +322,7 @@
             this.SendProgram.Padding = new System.Windows.Forms.Padding(3);
             this.SendProgram.Size = new System.Drawing.Size(782, 465);
             this.SendProgram.TabIndex = 0;
-            this.SendProgram.Text = "发送节目";
+            this.SendProgram.Text = "Send show";
             this.SendProgram.UseVisualStyleBackColor = true;
             // 
             // ProgramConfigText
@@ -346,7 +346,7 @@
             this.SendProgramConfig.Name = "SendProgramConfig";
             this.SendProgramConfig.Size = new System.Drawing.Size(75, 23);
             this.SendProgramConfig.TabIndex = 1;
-            this.SendProgramConfig.Text = "发送";
+            this.SendProgramConfig.Text = "send";
             this.SendProgramConfig.UseVisualStyleBackColor = true;
             this.SendProgramConfig.Click += new System.EventHandler(this.SendProgramConfig_Click);
             // 
@@ -356,7 +356,7 @@
             this.ChooseProgramConfig.Name = "ChooseProgramConfig";
             this.ChooseProgramConfig.Size = new System.Drawing.Size(75, 23);
             this.ChooseProgramConfig.TabIndex = 1;
-            this.ChooseProgramConfig.Text = "选择";
+            this.ChooseProgramConfig.Text = "select";
             this.ChooseProgramConfig.UseVisualStyleBackColor = true;
             this.ChooseProgramConfig.Click += new System.EventHandler(this.ChooseProgramConfig_Click);
             // 
@@ -367,7 +367,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "配置文件";
+            this.label1.Text = "Configuration file";
             // 
             // tabPage2
             // 
@@ -384,7 +384,7 @@
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(782, 465);
             this.tabPage2.TabIndex = 3;
-            this.tabPage2.Text = "设置项";
+            this.tabPage2.Text = "Setting item";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // btnWriteSwitchScreen
@@ -393,7 +393,7 @@
             this.btnWriteSwitchScreen.Name = "btnWriteSwitchScreen";
             this.btnWriteSwitchScreen.Size = new System.Drawing.Size(75, 23);
             this.btnWriteSwitchScreen.TabIndex = 6;
-            this.btnWriteSwitchScreen.Text = "设置开关屏";
+            this.btnWriteSwitchScreen.Text = "Set switch screen";
             this.btnWriteSwitchScreen.UseVisualStyleBackColor = true;
             this.btnWriteSwitchScreen.Click += new System.EventHandler(this.btnWriteSwitchScreen_Click);
             // 
@@ -403,7 +403,7 @@
             this.btnReadSwitchScreen.Name = "btnReadSwitchScreen";
             this.btnReadSwitchScreen.Size = new System.Drawing.Size(75, 23);
             this.btnReadSwitchScreen.TabIndex = 5;
-            this.btnReadSwitchScreen.Text = "回读开关屏";
+            this.btnReadSwitchScreen.Text = "Read back switch screen";
             this.btnReadSwitchScreen.UseVisualStyleBackColor = true;
             this.btnReadSwitchScreen.Click += new System.EventHandler(this.btnReadSwitchScreen_Click);
             // 
@@ -413,7 +413,7 @@
             this.btnWriteTime.Name = "btnWriteTime";
             this.btnWriteTime.Size = new System.Drawing.Size(75, 23);
             this.btnWriteTime.TabIndex = 4;
-            this.btnWriteTime.Text = "时间校正";
+            this.btnWriteTime.Text = "Time correction";
             this.btnWriteTime.UseVisualStyleBackColor = true;
             this.btnWriteTime.Click += new System.EventHandler(this.btnWriteTime_Click);
             // 
@@ -423,7 +423,7 @@
             this.btnReadTime.Name = "btnReadTime";
             this.btnReadTime.Size = new System.Drawing.Size(75, 23);
             this.btnReadTime.TabIndex = 3;
-            this.btnReadTime.Text = "回读时间";
+            this.btnReadTime.Text = "Readback time";
             this.btnReadTime.UseVisualStyleBackColor = true;
             this.btnReadTime.Click += new System.EventHandler(this.btnReadTime_Click);
             // 
@@ -433,7 +433,7 @@
             this.btnWriteLight.Name = "btnWriteLight";
             this.btnWriteLight.Size = new System.Drawing.Size(75, 23);
             this.btnWriteLight.TabIndex = 2;
-            this.btnWriteLight.Text = "设置亮度";
+            this.btnWriteLight.Text = "Set brightness";
             this.btnWriteLight.UseVisualStyleBackColor = true;
             this.btnWriteLight.Click += new System.EventHandler(this.btnWriteLight_Click);
             // 
@@ -443,7 +443,7 @@
             this.btnReadLight.Name = "btnReadLight";
             this.btnReadLight.Size = new System.Drawing.Size(75, 23);
             this.btnReadLight.TabIndex = 1;
-            this.btnReadLight.Text = "回读亮度";
+            this.btnReadLight.Text = "Read back brightness";
             this.btnReadLight.UseVisualStyleBackColor = true;
             this.btnReadLight.Click += new System.EventHandler(this.btnReadLight_Click);
             // 
@@ -458,7 +458,7 @@
             // 
             // OpenXMLFileDialog
             // 
-            this.OpenXMLFileDialog.Filter = "XML文件|*.xml|所有文件|*.*";
+            this.OpenXMLFileDialog.Filter = "XML file|*.xml|all files|*.*";
             // 
             // OpenResFileDialog
             // 
@@ -488,7 +488,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(782, 465);
             this.tabPage3.TabIndex = 4;
-            this.tabPage3.Text = "FPGA参数";
+            this.tabPage3.Text = "fpga";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // label3
@@ -498,7 +498,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(107, 12);
             this.label3.TabIndex = 1;
-            this.label3.Text = "HDPlayer FPGA参数";
+            this.label3.Text = "HDPlayer fpga";
             // 
             // label4
             // 
@@ -507,7 +507,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(77, 12);
             this.label4.TabIndex = 2;
-            this.label4.Text = "SDK FPGA参数";
+            this.label4.Text = "SDK fpga";
             // 
             // tbHPath
             // 
@@ -522,7 +522,7 @@
             this.btnHSend.Name = "btnHSend";
             this.btnHSend.Size = new System.Drawing.Size(75, 23);
             this.btnHSend.TabIndex = 3;
-            this.btnHSend.Text = "发送";
+            this.btnHSend.Text = "send";
             this.btnHSend.UseVisualStyleBackColor = true;
             this.btnHSend.Click += new System.EventHandler(this.btnHSend_Click);
             // 
@@ -532,7 +532,7 @@
             this.btnHSelect.Name = "btnHSelect";
             this.btnHSelect.Size = new System.Drawing.Size(75, 23);
             this.btnHSelect.TabIndex = 4;
-            this.btnHSelect.Text = "选择";
+            this.btnHSelect.Text = "select";
             this.btnHSelect.UseVisualStyleBackColor = true;
             this.btnHSelect.Click += new System.EventHandler(this.btnHSelect_Click);
             // 
@@ -549,7 +549,7 @@
             this.btnSSend.Name = "btnSSend";
             this.btnSSend.Size = new System.Drawing.Size(75, 23);
             this.btnSSend.TabIndex = 6;
-            this.btnSSend.Text = "发送";
+            this.btnSSend.Text = "send";
             this.btnSSend.UseVisualStyleBackColor = true;
             this.btnSSend.Click += new System.EventHandler(this.btnSSend_Click);
             // 
@@ -559,7 +559,7 @@
             this.btnSSelect.Name = "btnSSelect";
             this.btnSSelect.Size = new System.Drawing.Size(75, 23);
             this.btnSSelect.TabIndex = 7;
-            this.btnSSelect.Text = "选择";
+            this.btnSSelect.Text = "select";
             this.btnSSelect.UseVisualStyleBackColor = true;
             this.btnSSelect.Click += new System.EventHandler(this.btnSSelect_Click);
             // 
@@ -569,7 +569,7 @@
             this.btnReadNetwork.Name = "btnReadNetwork";
             this.btnReadNetwork.Size = new System.Drawing.Size(85, 23);
             this.btnReadNetwork.TabIndex = 7;
-            this.btnReadNetwork.Text = "获取网络信息";
+            this.btnReadNetwork.Text = "Get network information";
             this.btnReadNetwork.UseVisualStyleBackColor = true;
             this.btnReadNetwork.Click += new System.EventHandler(this.btnReadNetwork_Click);
             // 

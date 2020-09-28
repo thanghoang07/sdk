@@ -7,7 +7,7 @@ namespace huidu.sdk
 {
     class Network
     {
-        //回读网络信息
+        //Read back network information
         static public string GetNetworkInfo()
         {
             string cmd = "    <in method=\"GetNetworkInfo\"/>\n";

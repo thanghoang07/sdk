@@ -123,7 +123,7 @@
 	&lt;in method="AddProgram"&gt;
 		&lt;screen id="1010" guid="ab8a2e60-0fce-4693-a10d-b8db4212453b" timeStamps="452435"&gt;
 			&lt;program guid="f61729cf-5192-4d30-9e1b-c542a2b32866" id="1012" name="新节目12312312" type="normal"&gt;
-				&lt;area name="图片1" guid="90c7db0a-9926-405e-9fec-9b78219f03bc"&gt;
+				&lt;area name="image1" guid="90c7db0a-9926-405e-9fec-9b78219f03bc"&gt;
 					&lt;rectangle width="128" height="64" x="0" y="0"/&gt;
 					&lt;resources&gt;
 						&lt;image name="" guid="1077" fit="stretch"&gt;

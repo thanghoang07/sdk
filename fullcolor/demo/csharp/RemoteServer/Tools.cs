@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace huidu.sdk
 {
-    class Tools
+    public class Tools
     {
         public static byte[] StructToBytes(object structObj, int size)
         {
@@ -40,15 +38,15 @@ namespace huidu.sdk
                 | (data[index + 6] << 48)
                 | (data[index + 5] << 40)
                 | (data[index + 4] << 32)
-                | (data[index + 3] << 24) 
-                | (data[index + 2] << 16) 
-                | (data[index + 1] << 8) 
+                | (data[index + 3] << 24)
+                | (data[index + 2] << 16)
+                | (data[index + 1] << 8)
                 | data[index];
             index += 8;
             return value;
         }
 
-        public static void SetLong(byte[]data, ref int index, long value)
+        public static void SetLong(byte[] data, ref int index, long value)
         {
             ulong uvalue = (ulong)value;
             data[index + 0] = (byte)(uvalue & 0xff);

@@ -1,16 +1,23 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Xml;
 
 namespace huidu.sdk
 {
-    class SDKClient
+    public class SDKClient
     {
         private static SDKClient instance_ = null;
+        private string guid_ = "";
+        private Socket client_ = null;
+        private byte[] buffer_ = new byte[Protocols.MAX_TCP_PACKET];
+        private byte[] swapBuffer_ = new byte[Protocols.MAX_TCP_PACKET];
+        private byte[] packet_ = new byte[Protocols.MAX_TCP_PACKET];
+        private int validLen_ = 0;
+        private int maxBufferLen_ = Protocols.MAX_TCP_PACKET;
+        private byte[] sendBuffer_ = new byte[Protocols.MAX_TCP_PACKET];
+
+        private SDKClient() { }
+
         public static SDKClient GetInstace()
         {
             if (instance_ == null)
@@ -21,13 +28,6 @@ namespace huidu.sdk
             return instance_;
         }
 
-        private SDKClient()
-        {
-            
-        }
-
-        private string guid_ = "";
-        private Socket client_ = null;
         public void InitConnect(Socket client)
         {
             this.client_ = client;
@@ -45,10 +45,10 @@ namespace huidu.sdk
         public void SendVersionAsk()
         {
             Protocols.HVersionAsk version = new Protocols.HVersionAsk();
-            version.len     = 8;
-            version.cmd     = (ushort)Protocols.HCmdType.kSDKServiceAsk;
+            version.len = 8;
+            version.cmd = (ushort)Protocols.HCmdType.kSDKServiceAsk;
             version.version = (uint)Protocols.TCP_VERSION;
-            byte[] buffer   = Tools.StructToBytes(version, version.len);
+            byte[] buffer = Tools.StructToBytes(version, version.len);
             this.SendPacket(buffer, version.len);
         }
 
@@ -58,11 +58,10 @@ namespace huidu.sdk
             if (len != 10)
             {
                 this.PacketError(len);
-                return ;
+                return;
             }
 
-            Protocols.HVersionAnswer answer = (Protocols.HVersionAnswer)Tools.ByteToStruct(
-                this.packet_, typeof(Protocols.HVersionAnswer));
+            Protocols.HVersionAnswer answer = (Protocols.HVersionAnswer)Tools.ByteToStruct(this.packet_, typeof(Protocols.HVersionAnswer));
         }
 
         public void SendGetIFVersion()
@@ -127,29 +126,29 @@ namespace huidu.sdk
                     break;
                 }
             }
-            
+
             return xml;
         }
 
-        private byte[] sendBuffer_ = new byte[Protocols.MAX_TCP_PACKET];
         public void SendXmlCmd(byte[] xml, int len)
         {
             int validLen = Protocols.MAX_TCP_PACKET - 12;
             int packets = (len + validLen - 1) / validLen;
             int dataLen = len, packetLen = 0, dataIndex = 0;
-            for (int i=0; i<packets; i++)
+            for (int i = 0; i < packets; i++)
             {
                 if (dataLen > validLen)
                 {
                     packetLen = validLen;
-                } else
+                }
+                else
                 {
                     packetLen = dataLen;
                 }
 
                 dataIndex = len - dataLen;
                 Array.Copy(xml, dataIndex, sendBuffer_, 12, packetLen);
-                dataLen   -= packetLen;
+                dataLen -= packetLen;
                 packetLen += 12;
 
                 int index = 0;
@@ -165,21 +164,16 @@ namespace huidu.sdk
         {
             if (this.client_ == null)
             {
-                TcpServer.GetInstance().ShowMessage("客户端未接入!");
-                return ;
+                TcpServer.GetInstance().ShowMessage("Client is not connected!");
+                return;
             }
 
             if (this.client_.Send(buffer, len, SocketFlags.None) != len)
             {
-                this.SocketError("发送数据失败!");
+                this.SocketError("send data failure!");
             }
         }
-
-        private byte[] buffer_      = new byte[Protocols.MAX_TCP_PACKET];
-        private byte[] swapBuffer_  = new byte[Protocols.MAX_TCP_PACKET];
-        private byte[] packet_      = new byte[Protocols.MAX_TCP_PACKET];
-        private int validLen_       = 0;
-        private int maxBufferLen_   = Protocols.MAX_TCP_PACKET;
+      
         public void CopyPacket(byte[] buffer, int len)
         {
             Array.Copy(this.packet_, buffer, len);
@@ -197,7 +191,6 @@ namespace huidu.sdk
                     {
                         break;
                     }
-
                     int space = 0, copyLen = 0;
                     int index = 0;
                     while (len > 0)
@@ -205,11 +198,10 @@ namespace huidu.sdk
                         space = this.maxBufferLen_ - this.validLen_;
                         if (space == 0)
                         {
-                            //说明数据包有问题, 主动丢弃数据
+                            //There is a problem with the data packet, and the data is actively discarded
                             space = this.maxBufferLen_;
                             this.validLen_ = 0;
                         }
-
                         if (space >= len)
                         {
                             copyLen = len;
@@ -250,17 +242,15 @@ namespace huidu.sdk
                         {
                             this.validLen_ = 0;
                         }
-
                         return cmdLen;
                     }
                 }
                 catch (Exception ex)
                 {
-                    this.SocketError("接受数据失败!");
+                    this.SocketError($"Accept data failure! {ex.Message}");
                     break;
                 }
             }
-
             return 0;
         }
 
@@ -268,10 +258,10 @@ namespace huidu.sdk
         {
             if (len < 1)
             {
-                return ;
+                return;
             }
 
-            string msg = "数据包错误: " + Tools.Hex2String(this.packet_, len);
+            string msg = "Packet error: " + Tools.Hex2String(this.packet_, len);
             this.SocketError(msg);
         }
 
@@ -284,8 +274,8 @@ namespace huidu.sdk
                 this.client_.Close();
                 this.client_ = null;
             }
-            
-            TcpServer.GetInstance().ShowMessage("出错! " + msg, false);
+
+            TcpServer.GetInstance().ShowMessage("Error! " + msg, false);
         }
     }
 }

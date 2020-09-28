@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace huidu.sdk
 {
-    
     public class SocketHelper
     {
-        static public SocketHelper GetInstance()
+        private static SocketHelper instance_ = null;
+        private Thread thread_ = null;
+        private bool isActivity_ = true;
+        private object locker_ = new object();
+        private ArrayList socketLists_ = new ArrayList();
+        public delegate void RecvSignalHandle(object obj);
+        public RecvSignalHandle recvHandle_ = null;
+
+        private SocketHelper() { }
+
+        public static SocketHelper GetInstance()
         {
             if (instance_ == null)
             {
@@ -40,17 +45,10 @@ namespace huidu.sdk
 
         public void Unregister(ISocket socket)
         {
-            lock(this.locker_)
+            lock (this.locker_)
             {
                 this.socketLists_.Remove(socket);
             }
-        }
-
-        private static SocketHelper instance_ = null;
-        private Thread thread_ = null;
-        private SocketHelper()
-        {
-            
         }
 
         public void Exit()
@@ -58,20 +56,15 @@ namespace huidu.sdk
             this.isActivity_ = false;
         }
 
-        private bool isActivity_ = true;
-        private object locker_ = new object();
-        private ArrayList socketLists_ = new ArrayList();
-        public delegate void RecvSignalHandle(object obj);
-        public RecvSignalHandle recvHandle_ = null;
         private static void ReadThread()
         {
             ArrayList readList = new ArrayList();
             while (instance_.isActivity_)
             {
-                lock(instance_.locker_)
+                lock (instance_.locker_)
                 {
                     readList.Clear();
-                    for (int i=0; i<instance_.socketLists_.Count; i++)
+                    for (int i = 0; i < instance_.socketLists_.Count; i++)
                     {
                         readList.Add(((ISocket)instance_.socketLists_[i]).GetSocket());
                     }
@@ -86,7 +79,7 @@ namespace huidu.sdk
                 Socket.Select(readList, null, null, 1000);
                 lock (instance_.locker_)
                 {
-                    for (int i=0; i<readList.Count; i++)
+                    for (int i = 0; i < readList.Count; i++)
                     {
                         if (instance_.recvHandle_ != null)
                         {
@@ -95,7 +88,6 @@ namespace huidu.sdk
                     }
                 }
             }
-
             Console.Write("end...");
         }
     }
