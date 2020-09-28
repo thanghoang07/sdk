@@ -263,7 +263,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "大小";
+            this.columnHeader2.Text = "size";
             this.columnHeader2.Width = 83;
             // 
             // columnHeader10
