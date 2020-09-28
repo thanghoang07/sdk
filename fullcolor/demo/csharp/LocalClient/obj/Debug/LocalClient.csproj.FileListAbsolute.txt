@@ -1,0 +1,10 @@
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\bin\Debug\LocalClient.exe.config
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\bin\Debug\LocalClient.exe
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\bin\Debug\LocalClient.pdb
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\obj\Debug\LocalClient.csprojAssemblyReference.cache
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\obj\Debug\LocalClient.AddressSet.resources
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\obj\Debug\LocalClient.Properties.Resources.resources
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\obj\Debug\LocalClient.csproj.GenerateResource.cache
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\obj\Debug\LocalClient.csproj.CoreCompileInputs.cache
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\obj\Debug\LocalClient.exe
+D:\Documents\sdk_demo\fullcolor\demo\csharp\LocalClient\obj\Debug\LocalClient.pdb

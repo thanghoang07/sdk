@@ -43,21 +43,20 @@ namespace huidu.sdk
         public void InitListen(int port)
         {
             this.port_ = port;
-
-            IPAddress local = IPAddress.Parse("0.0.0.0");
+            IPAddress local = IPAddress.Parse("169.254.222.129");
             IPEndPoint iep = new IPEndPoint(local, this.port_);
             try
             {
-                //创建服务器的socket对象
+                //Create a socket object for the server
                 server_ = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                 server_.Bind(iep);
                 server_.Listen(20);
                 server_.BeginAccept(new AsyncCallback(Accept), server_);
-                this.ShowMessage("Listening port number: " + this.port_ + " success.");
+                this.ShowMessage($"Listening port number: {this.port_ } success.");
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
-                this.ShowMessage("Listening port number: " + this.port_ + "  failure.");
+                this.ShowMessage($"Listening port number: {this.port_} failure. {e.Message}");
             }
         }
 
@@ -75,12 +74,11 @@ namespace huidu.sdk
             {
                 server_.BeginAccept(new AsyncCallback(Accept), server_);
             }
-            catch (System.Exception e)
+            catch (Exception e)
             {
-                this.ShowMessage("Listening port number: " + this.port_ + "  failure.");
+                this.ShowMessage($"Listening port number: {this.port_} failure. {e.Message}");
             }
             SDKClient.GetInstace().InitConnect(client_);
         }
     }
 }
-
